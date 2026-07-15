@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/API Layer/" />
+  <Folder Name="/Business Layer/">
+    <Project Path="KnowledgeHubPortal.Business/KnowledgeHubPortal.Business.csproj" />
+  </Folder>
+  <Folder Name="/Data Layer/">
+    <Project Path="KnowledgeHubPortal.Data/KnowledgeHubPortal.Data.csproj" />
+  </Folder>
+</Solution>
