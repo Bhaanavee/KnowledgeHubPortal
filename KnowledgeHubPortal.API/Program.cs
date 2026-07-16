@@ -1,5 +1,5 @@
-// using Microsoft.OpenApi.Models;
-namespace KalkitechProductCatalogService
+
+namespace KnowledgeHubPortal.API
 {
     public class Program
     {

@@ -1,6 +1,14 @@
-@KalkitechProductCatalogService_HostAddress = http://localhost:5036
+@KalkitechProductCatalogService_HostAddress = https://localhost:44347/api/ProductsCatalog
 
-GET {{KalkitechProductCatalogService_HostAddress}}/weatherforecast/
+GET {{KalkitechProductCatalogService_HostAddress}}
 Accept: application/json
 
 ###
+
+GET {{KalkitechProductCatalogService_HostAddress}}/2
+Accept: application/json
+
+###
+
+
+

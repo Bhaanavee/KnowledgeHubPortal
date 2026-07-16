@@ -19,10 +19,16 @@ namespace KalkitechProductCatalogService.Controllers
         //Get http://localhost:5000/api/ProductsCatalog/1 // example of how to call this API endpoint
         [HttpGet]
         [Route("{id}")] // the extra placeholder is the id
-        public Product GetProductById( int id)
+        public IActionResult GetProductById( int id)
         {
             var product = from p in GetProductFromDatabase() where p.ProductId == id select p;
-            return product.FirstOrDefault();
+            if(product == null)
+            { // return 404 - not found status code
+                return NotFound("Product not found");
+            }
+            //return status code 200 - OK with the product data
+            return Ok(product.FirstOrDefault());
+
         }
         [HttpGet] 
         //Get http://localhost:5000/api/ProductsCatalog/category/Mobile
@@ -31,6 +37,13 @@ namespace KalkitechProductCatalogService.Controllers
         {
             var products = from p in GetProductFromDatabase() where p.Category == category select p;
             return products.ToList();
+        }
+        [HttpGet] //Get http://localhost:5000/api/ProductsCatalog/costly
+        [Route("costly")]
+        public Product GetTheCostliestProdust()
+        {
+            var product = from p in GetProductFromDatabase() orderby p.Price descending select p;
+            return product.FirstOrDefault();
         }
 
         private List<Product> GetProductFromDatabase()

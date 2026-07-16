@@ -42,7 +42,7 @@ namespace KnowledgeHubPortal.Data
             foreach (int Articleid in Articleids)
             {
                 Article article = db.Articles.FirstOrDefault(a => a.ArticleID == Articleid);
-                article.isApproved = false;
+                article.IsDeleted = true;
             }
         }
 
