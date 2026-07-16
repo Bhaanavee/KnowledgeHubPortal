@@ -1,6 +1,8 @@
-@KnowledgeHubPortal.API_HostAddress = http://localhost:5229
+@KnowledgeHubPortal.API_HostAddress = https://localhost:44394/api/Category
 
-GET {{KnowledgeHubPortal.API_HostAddress}}/weatherforecast/
+GET {{KnowledgeHubPortal.API_HostAddress}}
 Accept: application/json
 
 ###
+
+

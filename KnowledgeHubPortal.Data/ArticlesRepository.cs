@@ -6,50 +6,57 @@ using System.Text;
 
 namespace KnowledgeHubPortal.Data
 {
+
     public class ArticlesRepository : IArticleRepository
     {
-        private KnowledgeHubPortalDBContext db = new KnowledgeHubPortalDBContext();
-        public void ApproveArticles(List<int> Articleids)
+        private KnowledgeHubPortalDBContext db = new KnowledgeHubPortalDBContext(); // Use DIP
+        public void ApproveArticle(List<int> articlesIds)
         {
-            foreach (int Articleid in Articleids)
+            foreach (int articleId in articlesIds)
             {
-                Article article = db.Articles.FirstOrDefault(a => a.ArticleID == Articleid);
-                article.isApproved = true;
+                var article = db.Articles.Find(articleId);
+                if (article != null)
+                {
+                    article.isApproved = true;
+
+                }
             }
+            db.SaveChanges();
         }
 
         public List<Article> BrowseArticles(int categoryId)
         {
-            if (db.Articles.Any(a => a.CategoryID == categoryId && a.isApproved && !a.IsDeleted))
-            {
-                return db.Articles.Where(a => a.CategoryID == categoryId && a.isApproved && !a.IsDeleted).ToList();
-            }
-            else
-            {
-                return new List<Article>();
-            }
-
+            var articles = from a in db.Articles
+                           where a.CategoryID == categoryId && a.isApproved == true && a.IsDeleted == false
+                           select a;
+            return articles.ToList();
         }
 
-        public List<Article> GetArticleForReview()
+        public List<Article> GetArticlesForReview()
         {
-           return db.Articles.Where(a => !a.isApproved && !a.IsDeleted).ToList();
-
+            var articles = from a in db.Articles
+                           where a.isApproved == false && a.IsDeleted == false
+                           select a;
+            return articles.ToList();
         }
 
-        public void RejectArticles(List<int> Articleids)
+        public void RejectArticle(List<int> articlesIds)
         {
-            foreach (int Articleid in Articleids)
+            foreach (int articleId in articlesIds)
             {
-                Article article = db.Articles.FirstOrDefault(a => a.ArticleID == Articleid);
-                article.IsDeleted = true;
+                var article = db.Articles.Find(articleId);
+                if (article != null)
+                {
+                    article.isApproved = false;
+                    article.IsDeleted = true;
+                }
             }
+            db.SaveChanges();
         }
 
-        public void SubmitArticle(Article Articleids)
+        public void SubmitArticle(Article article)
         {
-            Article a = db.Articles.FirstOrDefault(a => a.ArticleID == Articleids.ArticleID);
-            db.Articles.Add(a);
+            db.Articles.Add(article);
             db.SaveChanges();
         }
     }

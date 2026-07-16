@@ -7,11 +7,11 @@ namespace KnowledgeHubPortal.Business.Interfaces
 {
     public interface IArticleRepository
     {
-        // submit, approve, 
         void SubmitArticle(Article article);
-        List<Article> GetArticleForReview();
-        void ApproveArticles(List<int> Articleids);
-        void RejectArticles(List<int> Articleids);
+        List<Article> GetArticlesForReview();
+        void ApproveArticle(List<int> articlesIds);
+        void RejectArticle(List<int> articlesIds);
         List<Article> BrowseArticles(int categoryId);
+
     }
 }
