@@ -12,7 +12,7 @@ namespace KnowledgeHubPortal.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("host=localhost; port=5432; dbname=KnowledgeHubPortalA; user=postgres; password=kalki");
+            optionsBuilder.UseNpgsql("Host=localhost; Port=5432; database=KnowledgeHubPortal; username=postgres; password=kalki");
         }
         public DbSet<Category> Category { get; set; }
         public DbSet<Article> Articles { get; set; }

@@ -6,4 +6,7 @@
   <Folder Name="/Data Layer/">
     <Project Path="KnowledgeHubPortal.Data/KnowledgeHubPortal.Data.csproj" />
   </Folder>
+  <Folder Name="/Demos API/">
+    <Project Path="KalkitechProductCatalogService/KalkitechProductCatalogService.csproj" Id="60e7ba07-d878-4c14-9be4-b52f047c08a4" />
+  </Folder>
 </Solution>
