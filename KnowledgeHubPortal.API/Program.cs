@@ -20,6 +20,19 @@ namespace KnowledgeHubPortal.API
             // Register repositories for dependency injection
             builder.Services.AddScoped<IArticleRepository, ArticlesRepository>();
 
+            // Add CORS services
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
+            
+
             // Register Swagger
             builder.Services.AddSwaggerGen(options =>
             {
@@ -61,6 +74,9 @@ namespace KnowledgeHubPortal.API
             }
 
             app.UseHttpsRedirection();
+
+            // Enable CORS
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 
